@@ -76,4 +76,6 @@ export async function lint(): Promise<void> {
 test.description = 'Runs lint';
 
 export const build = gulp.series(clean, gulp.parallel(bundle, types));
+export const prepare = gulp.series(build);
+export const prepublishOnly = gulp.series(lint, test);
 export default build;

@@ -25,7 +25,9 @@
         "bundle": "gulp bundle",
         "types": "gulp types",
         "build": "gulp build",
-        "lint": "gulp lint"
+        "lint": "gulp lint",
+        "prepare": "gulp prepare",
+        "prepublishOnly": "gulp prepublishOnly"
     },
     "devDependencies": {
         "@types/chai": "^4.2.18",
