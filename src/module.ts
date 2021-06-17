@@ -1,8 +1,8 @@
-import { getWasmMetadata } from "./wasm";
+import { getWasmMetadata } from './wasm';
 
 const json = JSON.stringify;
 const importList = (module: string, identifiers: string[]) => `import { ${identifiers.join(', ')} } from ${json(module)};`;
-const mapFn = <T extends any[], U>(items: Iterable<T>, callbackfn: (...args: T) => U, thisArg?: any) => Array.from(items).map(x => callbackfn.apply(thisArg, x));
+const mapFn = <T extends unknown[], U>(items: Iterable<T>, callbackfn: (...args: T) => U, thisArg?: unknown) => Array.from(items).map(x => callbackfn.apply(thisArg, x));
 
 /**
  * Generates JS module imports for a list of WASM exports.
@@ -39,7 +39,7 @@ function generateWasmImports(identifier: string, wasmImports: WebAssembly.Module
  * @returns A string containing the generated export code.
  */
 function generateWasmExports(identifier: string, wasmExports: WebAssembly.ModuleExportDescriptor[]) {
-    return wasmExports.map(e => `export const ${e.name} = ${identifier}.${e.name};`).join("\n");
+    return wasmExports.map(e => `export const ${e.name} = ${identifier}.${e.name};`).join('\n');
 }
 
 /**

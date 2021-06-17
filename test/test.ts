@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 import { expect } from 'chai';
 import * as esbuild from 'esbuild';
-import wasmLoader from "../src";
-
+import wasmLoader from '../src';
 
 describe('esbuild', () => {
     it('should bundle the wasm module without errors', async () => {

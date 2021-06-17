@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import { OnLoadResult, OnResolveResult, Plugin, PluginBuild } from "esbuild";
+import { OnLoadResult, OnResolveResult, Plugin, PluginBuild } from 'esbuild';
 
 import { generateWasmModule } from './module';
 
-const  WASM_MODULE_NAMESPACE = "wasm-module";
-const  WASM_DEFERRED_NAMESPACE = "wasm-deferred";
-const  WASM_EMBEDDED_NAMESPACE = "wasm-embedded";
+const  WASM_MODULE_NAMESPACE = 'wasm-module';
+const  WASM_DEFERRED_NAMESPACE = 'wasm-deferred';
+const  WASM_EMBEDDED_NAMESPACE = 'wasm-embedded';
 
 /**
  * Options for loading WASM files.
@@ -30,9 +30,9 @@ interface WasmOptions {
  * Loads `.wasm` files as a js module.
  */
 function wasmLoader(options?: WasmOptions): Plugin {
-    const embed = options?.mode?.toLowerCase() == "embedded";
+    const embed = options?.mode?.toLowerCase() == 'embedded';
     return {
-        name: "wasm",
+        name: 'wasm',
         setup(build: PluginBuild) {
             // Catch "*.wasm" files in the resolve phase and redirect them to our custom namespaces
             build.onResolve({ filter: /\.(?:wasm)$/ }, (args): OnResolveResult | undefined => {

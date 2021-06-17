@@ -1,4 +1,6 @@
-// Since we need to build as esm but run as cjs, external modules should be dynamically required
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+// Since we need to build as esm but run as cjs, external modules need to be dynamically required
 const { expect } = require('chai');
 
 import { add, addToNumber } from './wasm/basic.wasm';

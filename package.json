@@ -24,10 +24,12 @@
         "clean": "gulp clean",
         "bundle": "gulp bundle",
         "types": "gulp types",
-        "build": "gulp build"
+        "build": "gulp build",
+        "lint": "gulp lint"
     },
     "devDependencies": {
         "@types/chai": "^4.2.18",
+        "@types/eslint": "^7.2.13",
         "@types/gulp": "^4.0.8",
         "@types/mocha": "^8.2.2",
         "@types/node": "^15.12.2",
