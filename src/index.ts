@@ -14,14 +14,13 @@ const  WASM_EMBEDDED_NAMESPACE = 'wasm-embedded';
 interface WasmOptions {
     /**
      * The bundling mode for the WASM binary.
-     * - `deferred` (Default) The WASM binary will be copied to the output directory and then downloaded at runtime. This is the preferred option.
+     * - `deferred` (Default) Copies the WASM binary to the output directory,
+     *   and then `fetch()`s it at runtime. This is the perffered mode.
      *
-     *   **Note:** This option requires top-level await support, which is currently only available when bundling in `esm` format. See https://github.com/evanw/esbuild/issues/253
      *
-     *
-     * - `embedded` The WASM binary will be embedded into the resulting JS bundle.
-     *
-     *   **Note:** This embeds the file using base64, which will bloat the file size by an extra 30% compared to `deferred` mode.
+     * - `embedded` Embeds the WASM binary in the javascript bundle as a base64
+     *   string. Note this will greatly bloat the resulting bundle (the binary
+     *   will take up about 30% more space this way)
      */
     mode?: 'deferred' | 'embedded';
 }
