@@ -26,36 +26,112 @@ yarn add --dev esbuild-plugin-wasm
 ```
 
 ## Usage
-Add it to your esbuild plugins list
+1. Add it to your esbuild plugins list
 
-```ts
-// build.ts
-import esbuild from 'esbuild';
-import wasmLoader from 'esbuild-plugin-wasm';
+    <details>
+    <summary>CommonJS</summary>
 
-esbuild.build({
-  ...
-  plugins: [
-    wasmLoader()
-  ]
-  ...
-});
-```
+    ```js
+    // build.js
+    const esbuild = require('esbuild')
+    const { wasmLoader } = require('esbuild-plugin-wasm')
 
-Then import your wasm
-```ts
-// app.ts
-import wasm from "./lib.wasm";
+    esbuild.build({
+    ...
+    plugins: [
+        wasmLoader()
+    ]
+    ...
+    });
+    ```
 
-console(wasm.add(1, 2));
-```
+    </details>
+
+    <details>
+    <summary>ESM</summary>
+
+    ```js
+    // build.js
+    import esbuild from 'esbuild'
+    import { wasmLoader } from 'esbuild-plugin-wasm'
+
+    esbuild.build({
+    ...
+    plugins: [
+        wasmLoader()
+    ]
+    ...
+    });
+    ```
+
+    </details>
+
+    <details>
+    <summary>Typescript</summary>
+
+    ```ts
+    // build.ts
+    import esbuild from 'esbuild'
+    import { wasmLoader } from 'esbuild-plugin-wasm'
+
+    esbuild.build({
+    ...
+    plugins: [
+        wasmLoader()
+    ]
+    ...
+    });
+    ```
+
+    </details>
+
+
+2. Then import ad use your wasm in your project
+
+
+    <details>
+    <summary>CommonJS</summary>
+
+    ```js
+    // app.js
+    const wasm = require("./lib.wasm");
+
+    console(wasm.add(1, 2));
+    ```
+
+    </details>
+
+    <details>
+    <summary>ESM</summary>
+
+    ```js
+    // app.js
+    import wasm from "./lib.wasm";
+
+    console(wasm.add(1, 2));
+    ```
+
+    </details>
+
+    <details>
+    <summary>Typescript</summary>
+
+    ```ts
+    // app.ts
+    import wasm from "./lib.wasm";
+
+    console(wasm.add(1, 2));
+    ```
+
+    </details>
+
 
 ## Configuration
 
 ```ts
 wasmLoader({
     // (Default) Deferred mode copies the WASM binary to the output directory,
-    // and then `fetch()`s it at runtime. This is the perffered mode.
+    // and then `fetch()`s it at runtime. This is the default mode.
     mode: 'deferred'
 
     // Embedded mode embeds the WASM binary in the javascript bundle as a

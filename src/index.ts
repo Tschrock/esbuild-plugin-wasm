@@ -15,7 +15,7 @@ interface WasmOptions {
     /**
      * The bundling mode for the WASM binary.
      * - `deferred` (Default) Copies the WASM binary to the output directory,
-     *   and then `fetch()`s it at runtime. This is the perffered mode.
+     *   and then `fetch()`s it at runtime. This is the preferred mode.
      *
      *
      * - `embedded` Embeds the WASM binary in the javascript bundle as a base64
@@ -72,5 +72,7 @@ function wasmLoader(options?: WasmOptions): Plugin {
         }
     };
 }
+
+wasmLoader.wasmLoader = wasmLoader
 
 export { wasmLoader, wasmLoader as default };
