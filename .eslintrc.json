@@ -9,6 +9,6 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
-        "@typescript-eslint/quotes": ["error", "single"]
+        "@typescript-eslint/quotes": ["error", "single", { "avoidEscape": true }]
     }
 }

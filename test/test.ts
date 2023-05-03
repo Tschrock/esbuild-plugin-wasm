@@ -3,7 +3,7 @@ import { promises as fs } from 'fs'
 import path from 'path'
 
 import chai, { expect } from 'chai'
-import chaiAsPromised from "chai-as-promised";
+import chaiAsPromised from 'chai-as-promised';
 import * as esbuild from 'esbuild'
 
 import { wasmLoader } from '../src'
@@ -20,7 +20,7 @@ function doBuild(mode: Mode, format: esbuild.Format, platform: esbuild.Platform,
         format,
         platform,
         external: ['chai'],
-        assetNames: "assets/[name]-[hash]",
+        assetNames: 'assets/[name]-[hash]',
         logLevel: 'silent'
     })
 }
@@ -105,21 +105,17 @@ describe('esbuild', () => {
     })
 
     after(async () => {
-        // @ts-ignore
         const { test: testBrowserEmbedded } = await eval("import('../dist-test/app-node-embedded.mjs')");
         await testBrowserEmbedded('node-embedded');
 
-        // @ts-ignore
         const { test: testNodeDeferred } = await eval("import('../dist-test/app-node-deferred.mjs')");
         await testNodeDeferred('node-deferred');
 
-        // @ts-ignore
         const { test: testNodeEmbedded } = await eval("import('../dist-test/app-browser-embedded.mjs')");
         await testNodeEmbedded('browser-embedded');
 
         monkeypatchFetch()
 
-        // @ts-ignore
         const { test: testBrowserDeferred } = await eval("import('../dist-test/app-browser-deferred.mjs')");
         await testBrowserDeferred('browser-deferred');
 
