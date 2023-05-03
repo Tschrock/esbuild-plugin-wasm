@@ -8,10 +8,12 @@ const  WASM_MODULE_NAMESPACE = 'wasm-module';
 const  WASM_DEFERRED_NAMESPACE = 'wasm-deferred';
 const  WASM_EMBEDDED_NAMESPACE = 'wasm-embedded';
 
+export type Mode = 'deferred' | 'embedded'
+
 /**
  * Options for loading WASM files.
  */
-interface WasmOptions {
+export interface WasmOptions {
     /**
      * The bundling mode for the WASM binary.
      * - `deferred` (Default) Copies the WASM binary to the output directory,
@@ -22,7 +24,7 @@ interface WasmOptions {
      *   string. Note this will greatly bloat the resulting bundle (the binary
      *   will take up about 30% more space this way)
      */
-    mode?: 'deferred' | 'embedded';
+    mode?: Mode;
 }
 
 /**

@@ -59,6 +59,12 @@ export async function generateWasmModule(path: string): Promise<string> {
 
         async function loadWasm(module, imports) {
             if (typeof module === 'string') {
+
+                // Resolve relative urls from the runtime script path
+                if (module.startsWith('./')) {
+                    module = new URL(module, import.meta.url).href
+                }
+
                 const moduleRequest = await fetch(module);
                 if (typeof WebAssembly.instantiateStreaming === 'function') {
                     try {
