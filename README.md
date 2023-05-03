@@ -86,20 +86,7 @@ yarn add --dev esbuild-plugin-wasm
     </details>
 
 
-2. Then import ad use your wasm in your project
-
-
-    <details>
-    <summary>CommonJS</summary>
-
-    ```js
-    // app.js
-    const wasm = require("./lib.wasm");
-
-    console(wasm.add(1, 2));
-    ```
-
-    </details>
+2. Then import and use your wasm in your project
 
     <details>
     <summary>ESM</summary>
