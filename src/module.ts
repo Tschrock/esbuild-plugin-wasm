@@ -47,7 +47,7 @@ function generateWasmExports(identifier: string, wasmExports: WebAssembly.Module
  * @param path The path to the WASM file.
  * @returns A string containing the generated module.
  */
-export async function generateWasmModule(path: string): Promise<string> {
+export async function generateWasmModule(path: string, platform: string | undefined): Promise<string> {
     // Get the WASM metadata
     const { imports, exports } = await getWasmMetadata(path);
 
@@ -65,6 +65,14 @@ export async function generateWasmModule(path: string): Promise<string> {
                     module = new URL(module, import.meta.url).href
                 }
 
+                ${platform === 'node' ? `
+                    // Special handling for file URLs outside the browser
+                    if (module.startsWith('file://')) {
+                        const fs = await import('fs')
+                        module = await fs.promises.readFile(new URL(module))
+                    } else {
+                ` : ''}
+
                 const moduleRequest = await fetch(module);
                 if (typeof WebAssembly.instantiateStreaming === 'function') {
                     try {
@@ -78,6 +86,8 @@ export async function generateWasmModule(path: string): Promise<string> {
                     }
                 }
                 module = await moduleRequest.arrayBuffer();
+
+                ${platform === 'node' ? '}' : ''}
             }
             return await WebAssembly.instantiate(module, imports);
         }

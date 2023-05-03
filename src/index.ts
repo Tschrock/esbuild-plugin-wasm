@@ -55,7 +55,7 @@ function wasmLoader(options?: WasmOptions): Plugin {
             // For virtual module loading, build a virtual module for the wasm file
             build.onLoad({ filter: /.*/, namespace: WASM_MODULE_NAMESPACE }, async (args): Promise<OnLoadResult> => {
                 return {
-                    contents: await generateWasmModule(args.path),
+                    contents: await generateWasmModule(args.path, build.initialOptions.platform),
                     resolveDir: path.dirname(args.path)
                 };
             });
