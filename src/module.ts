@@ -67,7 +67,7 @@ export async function generateWasmModule(
                     : `if (typeof module === 'string') {
 
                 // Resolve relative urls from the runtime script path
-                if (module.startsWith('./')) {
+                if (module.startsWith('./') || module.startsWith('../')) {
                     module = new URL(module, import.meta.url).href
                 }
 
